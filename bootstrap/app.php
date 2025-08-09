@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use App\Http\Middleware\DraftAccess;
+
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,5 +21,4 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })->create();
 
-use App\Http\Middleware\DraftAccess;
 
