@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/posts');
+
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->middleware('draft.access')->name('posts.show');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
