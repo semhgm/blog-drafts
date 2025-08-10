@@ -194,7 +194,20 @@
     <div class="header-content">
         <a href="#" class="logo">🍯 Tatlı Sözlük</a>
         <nav class="header-nav">
-            <a href="#">Giriş</a>
+            @auth
+                @if(auth()->user()->is_admin)
+                    <a href="{{ route('admin.posts.index') }}" class="btn">Admin</a>
+                @else
+                    <a href="{{ route('posts.create') }}" class="btn">Yeni Başlık</a>
+                @endif
+
+                <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf <button class="btn">Çıkış</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="btn">Giriş</a>
+                <a href="{{ route('register') }}" class="btn btn-primary">Kayıt Ol</a>
+            @endauth
         </nav>
     </div>
 </header>
